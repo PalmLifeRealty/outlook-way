@@ -1,0 +1,5 @@
+# robots.txt — Outlook Way at 265 Causeway
+User-agent: *
+Allow: /
+
+Sitemap: https://outlookway.com/sitemap.xml
