@@ -517,51 +517,67 @@ section{padding:var(--sec) 0}
 @media (max-width:1024px){.level-copy.expanded .specs{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.level-copy.expanded .specs{grid-template-columns:1fr}}
 
-.floor-story{padding-top:var(--sec-sm)}
-.story-shell{border-top:1px solid var(--line);padding-top:clamp(26px,4vw,40px)}
-.story-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:22px}
-.story-tabs{display:flex;gap:10px;flex-wrap:wrap}
-.story-tab{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--line);font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);background:var(--extra)}
-.story-tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.story-arrows{display:flex;gap:10px}
-.story-arrow{width:42px;height:42px;border:1px solid var(--line-2);display:inline-flex;align-items:center;justify-content:center;background:var(--extra)}
-.story-arrow:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
-.story-track{position:relative;overflow:hidden}
-.story-slide{display:none;grid-template-columns:1.04fr .96fr;gap:clamp(28px,4vw,56px);align-items:center}
-.story-slide.on{display:grid}
-.story-copy h3{font-style:italic;font-weight:500}
-.story-copy .eyebrow{margin-bottom:14px}
-.story-copy .lede{margin-top:18px;color:var(--ink-2);max-width:48ch}
-.story-copy .ftxt{font-family:var(--display);font-style:italic;font-size:21px;color:var(--ink-2);margin-top:24px;max-width:34ch}
-.story-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.story-tags span{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--fountain-2);border:1px solid rgba(108,164,196,.45);padding:8px 14px;border-radius:999px}
-.story-points{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.story-points div{background:var(--extra);padding:15px 16px}
-.story-points .k{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--fountain-2)}
-.story-points .v{font-family:var(--display);font-size:17px;margin-top:6px}
-.story-media{aspect-ratio:4/5;overflow:hidden;background:var(--ibis);border:1px solid var(--line)}
-.story-media img{width:100%;height:100%;object-fit:cover}
-.story-disclosure{margin:clamp(20px,2.6vw,28px) 0 0;padding-top:18px;border-top:1px solid var(--line);font-family:var(--sans);font-size:12px;line-height:1.7;letter-spacing:.02em;color:var(--ink-2);opacity:.72;text-align:center;max-width:72ch;margin-left:auto;margin-right:auto}
-.story-dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
-.story-dot{width:10px;height:10px;border-radius:50%;background:rgba(15,20,25,.18);border:1px solid rgba(15,20,25,.18)}
-.story-dot.on{background:var(--fountain);border-color:var(--fountain)}
-@media (max-width:960px){.story-slide{grid-template-columns:1fr}.story-media{order:-1;aspect-ratio:16/10}.story-points{grid-template-columns:1fr}}
+/* ---------- FLOOR TOUR — dark carousel (was GARAGE + floor story) ---------- */
+.floor-tour{background:var(--ink);color:#fff}
+.ft-head{display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(20px,3vw,40px);flex-wrap:wrap;
+  padding:clamp(34px,4vw,56px) clamp(24px,4vw,64px) clamp(22px,2.6vw,30px);border-bottom:1px solid rgba(255,255,255,.14)}
+.ft-head-copy .eyebrow{color:var(--fountain)}
+.ft-head-copy h3{margin:12px 0 0;font-family:var(--display);font-style:italic;font-weight:500;font-size:clamp(24px,2.6vw,34px);color:#fff}
+.ft-nav{display:flex;align-items:center;gap:clamp(12px,1.6vw,20px);flex-wrap:wrap;min-width:0;max-width:100%}
+.story-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.story-tab{display:inline-flex;align-items:center;gap:9px;padding:11px 16px;background:transparent;
+  border:1px solid rgba(255,255,255,.24);font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(255,255,255,.72);transition:color .2s ease,border-color .2s ease,background .2s ease}
+.story-tab .n{font-family:var(--display);font-style:italic;font-size:15px;letter-spacing:0;color:var(--fountain)}
+.story-tab:hover{color:#fff;border-color:rgba(255,255,255,.5)}
+.story-tab.on{background:var(--fountain);border-color:var(--fountain);color:var(--ink)}
+.story-tab.on .n{color:var(--ink)}
+.story-arrows{display:flex;gap:8px}
+.story-arrow{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;
+  background:transparent;border:1px solid rgba(255,255,255,.24);color:#fff;font-size:16px;transition:background .2s ease,border-color .2s ease}
+.story-arrow:hover{background:var(--fountain);border-color:var(--fountain);color:var(--ink)}
 
-/* ---------- GARAGE ---------- */
-.garage-grid{display:grid;grid-template-columns:1fr 1.05fr;align-items:stretch;background:var(--ink);border-left:none;border-right:none}
-.garage-copy{padding:clamp(40px,5vw,80px) clamp(24px,4vw,64px)}
-.garage-copy .eyebrow{color:var(--fountain)}
-.garage-copy h2{margin-top:18px;color:#fff}
-.garage-copy .lede{margin-top:24px;max-width:46ch;color:rgba(255,255,255,.82)}
-.garage-words{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
-.garage-words span{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--fountain);border:1px solid rgba(108,164,196,.55);padding:8px 15px;border-radius:999px}
-.garage-copy .ftxt{font-family:var(--display);font-style:italic;font-weight:500;font-size:21px;color:#fff;margin-top:32px;max-width:30ch}
-.garage-copy .btn{margin-top:34px}
-.garage-img{position:relative;min-height:460px}
-.garage-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-@media (max-width:900px){.garage-grid{grid-template-columns:1fr}.garage-img{min-height:320px}}
+.story-track{position:relative;display:grid;grid-template-columns:minmax(0,1fr);overflow:hidden}
+.story-slide{grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:stretch;min-width:0;
+  visibility:hidden;opacity:0;transition:opacity .34s ease}
+.story-slide.on{visibility:visible;opacity:1;z-index:2}
+.story-copy{min-width:0;align-self:center;padding:clamp(36px,4.4vw,72px) clamp(24px,4vw,64px)}
+.story-copy .eyebrow{color:var(--fountain)}
+.story-copy h2{margin-top:18px;color:#fff}
+.story-copy .lede{margin-top:22px;max-width:46ch;color:rgba(255,255,255,.82)}
+.story-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.story-tags span{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--fountain);border:1px solid rgba(108,164,196,.55);padding:8px 15px;border-radius:999px}
+.story-points{margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
+.story-points div{background:var(--ink);padding:15px 16px;min-width:0;overflow-wrap:break-word}
+.story-points .k{font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--fountain)}
+.story-points .v{font-family:var(--display);font-size:17px;line-height:1.35;margin-top:6px;color:#fff}
+.story-copy .ftxt{font-family:var(--display);font-style:italic;font-weight:500;font-size:21px;color:#fff;margin-top:30px;max-width:32ch}
+.story-copy .btn{margin-top:30px}
+.story-media{position:relative;min-height:520px;background:#12171c}
+.story-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+.ft-foot{padding:clamp(24px,3vw,36px) clamp(24px,4vw,64px) clamp(32px,4vw,52px);border-top:1px solid rgba(255,255,255,.14)}
+.story-dots{display:flex;gap:9px;justify-content:center}
+.story-dot{width:9px;height:9px;border-radius:50%;background:transparent;border:1px solid rgba(255,255,255,.42)}
+.story-dot.on{background:var(--fountain);border-color:var(--fountain)}
+.story-disclosure{margin:18px auto 0;font-family:var(--sans);font-size:12px;line-height:1.7;letter-spacing:.02em;
+  color:rgba(255,255,255,.55);text-align:center;max-width:72ch}
+@media (max-width:1024px){.story-points{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:900px){
+  .ft-head{flex-direction:column;align-items:stretch}
+  .ft-nav{justify-content:space-between}
+  .story-tabs{flex:1 1 0;min-width:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .story-tabs::-webkit-scrollbar{display:none}
+  .story-tab{flex:0 0 auto}
+  .story-slide{grid-template-columns:minmax(0,1fr)}
+  .story-media{order:-1;min-height:0;aspect-ratio:16/10}
+  .story-arrow{width:52px;height:52px}
+}
 
 /* ---------- ELEVATOR ---------- */
+.pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.pill-row span{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--fountain-2);border:1px solid rgba(79,138,174,.45);padding:8px 15px;border-radius:999px}
 .elevator{background:var(--extra);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .elevator-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:clamp(32px,5vw,80px)}
 .elevator-img{aspect-ratio:1/1;overflow:hidden;background:var(--ibis);display:flex;align-items:center;justify-content:center}
@@ -854,6 +870,7 @@ section{padding:var(--sec) 0}
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
+  .story-slide{transition:none}
   *{scroll-behavior:auto!important}
   .hero-salescue .dot{animation:none}
 }
@@ -870,7 +887,7 @@ section{padding:var(--sec) 0}
   <div class="nav-links" id="navLinks">
     <a href="#residences">Residences</a>
     <a href="#explore">Explore the Home</a>
-    <a href="#garage">Garage</a>
+    <a href="#garage">The Plans</a>
     <a href="#amenities">Amenities</a>
     <a href="#dunedin">Dunedin</a>
     <a href="#pricing">Pricing</a>
@@ -1000,123 +1017,121 @@ section{padding:var(--sec) 0}
 
     <div class="level-copy expanded" id="lvlCopy"></div>
 
-    <section class="floor-story">
-      <div class="story-shell">
-        <div class="story-nav">
-          <div>
-            <div class="eyebrow">Four Levels Story</div>
-            <h3 style="margin-top:10px">Move vertically through the residence.</h3>
-          </div>
-          <div class="story-arrows">
-            <button class="story-arrow" id="storyPrev" aria-label="Previous floor story">←</button>
-            <button class="story-arrow" id="storyNext" aria-label="Next floor story">→</button>
-          </div>
-        </div>
-        <div class="story-tabs" role="tablist" aria-label="Floor story navigation">
-          <button class="story-tab on" data-story="0" role="tab" aria-selected="true">01 Garage</button>
-          <button class="story-tab" data-story="1" role="tab" aria-selected="false">02 Sleeping Sanctuary</button>
-          <button class="story-tab" data-story="2" role="tab" aria-selected="false">03 Social Space</button>
-          <button class="story-tab" data-story="3" role="tab" aria-selected="false">04 Rooftop Retreat</button>
-        </div>
-        <div class="story-track" id="storyTrack">
-          <article class="story-slide on" data-story-slide="0">
-            <div class="story-copy">
-              <div class="eyebrow">01 — The Garage</div>
-              <h3>GRAND GARAGE. FOUR CARS.</h3>
-              <p class="lede">Four-car garage capacity gives you something rarely found in townhome living: room for everything you want to bring with you.</p>
-              <div class="story-tags"><span>Cars</span><span>Golf Cart</span><span>Bikes</span><span>Paddleboards</span><span>Kayaks</span><span>Beach Gear</span><span>Storage</span></div>
-              <p class="ftxt">More garage. More storage. More possibilities.</p>
-              <div class="story-points">
-                <div><div class="k">Garage</div><div class="v">4-car garage</div></div>
-                <div><div class="k">Outdoor</div><div class="v">Private rear garden/patio</div></div>
-                <div><div class="k">Vertical Access</div><div class="v">4-stop private elevator</div></div>
-                <div><div class="k">Circulation</div><div class="v">Interior stairs</div></div>
-                <div><div class="k">Storage</div><div class="v">Vehicles, storage &amp; recreation equipment</div></div>
-                <div><div class="k">Lifestyle</div><div class="v">Space for the way you actually live</div></div>
-              </div>
-            </div>
-            <div class="story-media"><img width="1024" height="1024" src="assets/img/garage-lifestyle.jpg" alt="Lifestyle image representing the garage level" loading="lazy" /></div>
-          </article>
-          <article class="story-slide" data-story-slide="1">
-            <div class="story-copy">
-              <div class="eyebrow">02 — Sleeping Sanctuary</div>
-              <h3>A quiet and private level.</h3>
-              <p class="lede">The second floor is designed as the peaceful retreat of the residence — centered on privacy, comfort and separation from the social spaces of the home.</p>
-              <div class="story-points">
-                <div><div class="k">Bedrooms</div><div class="v">Three</div></div>
-                <div><div class="k">Bathrooms</div><div class="v">Two</div></div>
-                <div><div class="k">Primary Suite</div><div class="v">Private suite</div></div>
-                <div><div class="k">Closet</div><div class="v">Walk-in closet</div></div>
-                <div><div class="k">Ensuite</div><div class="v">Ensuite bathroom</div></div>
-                <div><div class="k">Primary Bath</div><div class="v">Garden tub &amp; separate shower</div></div>
-                <div><div class="k">Privacy</div><div class="v">Dedicated water closet</div></div>
-                <div><div class="k">Laundry</div><div class="v">Conveniently located laundry</div></div>
-                <div><div class="k">Finishes</div><div class="v">Designer flooring and finishes</div></div>
-              </div>
-            </div>
-            <div class="story-media"><img width="1024" height="1024" src="assets/img/bedroom-lifestyle.jpg" alt="Lifestyle image representing the sleeping sanctuary level" loading="lazy" /></div>
-          </article>
-          <article class="story-slide" data-story-slide="2">
-            <div class="story-copy">
-              <div class="eyebrow">03 — Social Space</div>
-              <h3>The heart of the home.</h3>
-              <p class="lede">This is where cooking, conversation, dining and gathering come together — a social floor designed for entertaining and everyday living.</p>
-              <div class="story-points">
-                <div><div class="k">Layout</div><div class="v">Open-concept kitchen, dining and living</div></div>
-                <div><div class="k">Kitchen</div><div class="v">Modern kitchen</div></div>
-                <div><div class="k">Appliances</div><div class="v">High-end appliances</div></div>
-                <div><div class="k">Island</div><div class="v">Large island</div></div>
-                <div><div class="k">Counters</div><div class="v">Ample counter space</div></div>
-                <div><div class="k">Living</div><div class="v">Spacious living area</div></div>
-                <div><div class="k">Finishes</div><div class="v">Designer finishes and flooring</div></div>
-                <div><div class="k">Lifestyle</div><div class="v">Designed for entertaining and everyday living</div></div>
-              </div>
-            </div>
-            <div class="story-media"><img width="1024" height="684" src="assets/img/kitchen-living.jpg" alt="Lifestyle image representing the social space level" loading="lazy" /></div>
-          </article>
-          <article class="story-slide" data-story-slide="3">
-            <div class="story-copy">
-              <div class="eyebrow">04 — Rooftop Retreat</div>
-              <h3>The culminating lifestyle level.</h3>
-              <p class="lede">An elevated outdoor level designed for gathering, entertaining and relaxing — an expansive rooftop patio with private elevator access and evening-living potential.</p>
-              <div class="story-points">
-                <div><div class="k">Patio</div><div class="v">Expansive rooftop patio</div></div>
-                <div><div class="k">Orientation</div><div class="v">Sunset and water-view orientation where applicable</div></div>
-                <div><div class="k">Shade</div><div class="v">Shade structures</div></div>
-                <div><div class="k">Utility</div><div class="v">Gas hookup</div></div>
-                <div><div class="k">Entertaining</div><div class="v">Outdoor cooking/entertaining potential</div></div>
-                <div><div class="k">Access</div><div class="v">Private elevator access</div></div>
-                <div><div class="k">Use</div><div class="v">Outdoor gathering and relaxation</div></div>
-              </div>
-            </div>
-            <div class="story-media"><img width="1024" height="1024" src="assets/img/rooftop-firepit.jpg" alt="Lifestyle image representing the rooftop retreat level" loading="lazy" /></div>
-          </article>
-        </div>
-        <div class="story-dots" id="storyDots">
-          <button class="story-dot on" data-story="0" aria-label="Go to Garage story"></button>
-          <button class="story-dot" data-story="1" aria-label="Go to Sleeping Sanctuary story"></button>
-          <button class="story-dot" data-story="2" aria-label="Go to Social Space story"></button>
-          <button class="story-dot" data-story="3" aria-label="Go to Rooftop Retreat story"></button>
-        </div>
-        <p class="story-disclosure">Lifestyle imagery for marketing purposes only. Images are not renderings of the residences. Features, finishes and views may vary.</p>
-      </div>
-    </section>
   </div>
 </section>
 
-<!-- ============== 6. GARAGE — Grand Garage. Four Cars. ============== -->
-<section class="garage-grid" id="garage">
-  <div class="garage-copy">
-    <div class="eyebrow dk">The Garage</div>
-    <h2>GRAND GARAGE.<br />FOUR CARS.</h2>
-    <p class="lede">Four-car garage capacity gives you something rarely found in townhome living: room for everything you want to bring with you.</p>
-    <div class="garage-words">
-      <span>Cars</span><span>Golf Cart</span><span>Bikes</span><span>Paddleboards</span><span>Kayaks</span><span>Beach Gear</span><span>Storage</span>
+<!-- ============== 6. THE RESIDENCE, LEVEL BY LEVEL (carousel) ============== -->
+<section class="floor-tour" id="garage" aria-label="The residence level by level">
+  <div class="ft-head">
+    <div class="ft-head-copy">
+      <div class="eyebrow dk">Four Levels of Living</div>
+      <h3>Move vertically through the residence.</h3>
     </div>
-    <p class="ftxt">More garage. More storage. More possibilities.</p>
-    <a class="btn btn-primary" href="#pricing">View Residence Pricing<span class="arr">→</span></a>
+    <div class="ft-nav">
+      <div class="story-tabs" role="tablist" aria-label="Floor navigation">
+        <button class="story-tab on" data-story="0" role="tab" aria-selected="true"><span class="n">01</span>The Garage</button>
+        <button class="story-tab" data-story="1" role="tab" aria-selected="false"><span class="n">02</span>Sleeping Sanctuary</button>
+        <button class="story-tab" data-story="2" role="tab" aria-selected="false"><span class="n">03</span>Social Space</button>
+        <button class="story-tab" data-story="3" role="tab" aria-selected="false"><span class="n">04</span>Rooftop Retreat</button>
+      </div>
+      <div class="story-arrows">
+        <button class="story-arrow" id="storyPrev" aria-label="Previous level">&larr;</button>
+        <button class="story-arrow" id="storyNext" aria-label="Next level">&rarr;</button>
+      </div>
+    </div>
   </div>
-  <div class="garage-img"><img width="1024" height="1024" src="assets/img/garage-lifestyle.jpg" alt="Generous private garage with room for vehicles, golf cart and recreation gear" loading="lazy" /></div>
+
+  <div class="story-track" id="storyTrack">
+      <article class="story-slide on" data-story-slide="0" aria-label="01 The Garage">
+      <div class="story-copy">
+        <div class="eyebrow dk">01 &middot; The Garage</div>
+        <h2>GRAND GARAGE.<br />FOUR CARS.</h2>
+        <p class="lede">Four-car garage capacity gives you something rarely found in townhome living: room for everything you want to bring with you.</p>
+        <div class="story-tags"><span>Cars</span><span>Golf Cart</span><span>Bikes</span><span>Paddleboards</span><span>Kayaks</span><span>Beach Gear</span><span>Storage</span></div>
+        <div class="story-points">
+          <div><div class="k">Garage</div><div class="v">4-car garage</div></div>
+          <div><div class="k">Outdoor</div><div class="v">Private rear garden/patio</div></div>
+          <div><div class="k">Vertical Access</div><div class="v">4-stop private elevator</div></div>
+          <div><div class="k">Circulation</div><div class="v">Interior stairs</div></div>
+          <div><div class="k">Storage</div><div class="v">Vehicles, storage &amp; recreation equipment</div></div>
+          <div><div class="k">Lifestyle</div><div class="v">Space for the way you actually live</div></div>
+        </div>
+        <p class="ftxt">More garage. More storage. More possibilities.</p>
+        <a class="btn btn-primary" href="#pricing">View Residence Pricing<span class="arr">&rarr;</span></a>
+      </div>
+      <div class="story-media"><img width="1024" height="1024" src="assets/img/garage-lifestyle.jpg" alt="Lifestyle image representing the garage level of an Outlook Way residence" loading="lazy" /></div>
+    </article>
+      <article class="story-slide" data-story-slide="1" aria-label="02 Sleeping Sanctuary">
+      <div class="story-copy">
+        <div class="eyebrow dk">02 &middot; Sleeping Sanctuary</div>
+        <h2>SLEEPING<br />SANCTUARY.</h2>
+        <p class="lede">The second floor is designed as the peaceful retreat of the residence &mdash; centered on privacy, comfort and separation from the social spaces of the home.</p>
+        <div class="story-points">
+          <div><div class="k">Bedrooms</div><div class="v">Three</div></div>
+          <div><div class="k">Bathrooms</div><div class="v">Two</div></div>
+          <div><div class="k">Primary Suite</div><div class="v">Private suite</div></div>
+          <div><div class="k">Closet</div><div class="v">Walk-in closet</div></div>
+          <div><div class="k">Ensuite</div><div class="v">Ensuite bathroom</div></div>
+          <div><div class="k">Primary Bath</div><div class="v">Garden tub &amp; separate shower</div></div>
+          <div><div class="k">Privacy</div><div class="v">Dedicated water closet</div></div>
+          <div><div class="k">Laundry</div><div class="v">Conveniently located laundry</div></div>
+          <div><div class="k">Finishes</div><div class="v">Designer flooring and finishes</div></div>
+        </div>
+        <p class="ftxt">A quiet and private level.</p>
+        <a class="btn btn-primary" href="#pricing">View Residence Pricing<span class="arr">&rarr;</span></a>
+      </div>
+      <div class="story-media"><img width="1024" height="1024" src="assets/img/bedroom-lifestyle.jpg" alt="Lifestyle image representing the sleeping sanctuary level of an Outlook Way residence" loading="lazy" /></div>
+    </article>
+      <article class="story-slide" data-story-slide="2" aria-label="03 Social Space">
+      <div class="story-copy">
+        <div class="eyebrow dk">03 &middot; Social Space</div>
+        <h2>SOCIAL<br />SPACE.</h2>
+        <p class="lede">This is where cooking, conversation, dining and gathering come together &mdash; a social floor designed for entertaining and everyday living.</p>
+        <div class="story-points">
+          <div><div class="k">Layout</div><div class="v">Open-concept kitchen, dining and living</div></div>
+          <div><div class="k">Kitchen</div><div class="v">Modern kitchen</div></div>
+          <div><div class="k">Appliances</div><div class="v">High-end appliances</div></div>
+          <div><div class="k">Island</div><div class="v">Large island</div></div>
+          <div><div class="k">Counters</div><div class="v">Ample counter space</div></div>
+          <div><div class="k">Living</div><div class="v">Spacious living area</div></div>
+          <div><div class="k">Finishes</div><div class="v">Designer finishes and flooring</div></div>
+          <div><div class="k">Lifestyle</div><div class="v">Designed for entertaining and everyday living</div></div>
+        </div>
+        <p class="ftxt">The heart of the home.</p>
+        <a class="btn btn-primary" href="#pricing">View Residence Pricing<span class="arr">&rarr;</span></a>
+      </div>
+      <div class="story-media"><img width="1024" height="684" src="assets/img/kitchen-living.jpg" alt="Lifestyle image representing the social space level of an Outlook Way residence" loading="lazy" /></div>
+    </article>
+      <article class="story-slide" data-story-slide="3" aria-label="04 Rooftop Retreat">
+      <div class="story-copy">
+        <div class="eyebrow dk">04 &middot; Rooftop Retreat</div>
+        <h2>ROOFTOP<br />RETREAT.</h2>
+        <p class="lede">An elevated outdoor level designed for gathering, entertaining and relaxing &mdash; an expansive rooftop patio with private elevator access and evening-living potential.</p>
+        <div class="story-points">
+          <div><div class="k">Patio</div><div class="v">Expansive rooftop patio</div></div>
+          <div><div class="k">Orientation</div><div class="v">Sunset and water-view orientation where applicable</div></div>
+          <div><div class="k">Shade</div><div class="v">Shade structures</div></div>
+          <div><div class="k">Utility</div><div class="v">Gas hookup</div></div>
+          <div><div class="k">Entertaining</div><div class="v">Outdoor cooking/entertaining potential</div></div>
+          <div><div class="k">Access</div><div class="v">Private elevator access</div></div>
+          <div><div class="k">Use</div><div class="v">Outdoor gathering and relaxation</div></div>
+        </div>
+        <p class="ftxt">The culminating lifestyle level.</p>
+        <a class="btn btn-primary" href="#pricing">View Residence Pricing<span class="arr">&rarr;</span></a>
+      </div>
+      <div class="story-media"><img width="1024" height="1024" src="assets/img/rooftop-firepit.jpg" alt="Lifestyle image representing the rooftop retreat level of an Outlook Way residence" loading="lazy" /></div>
+    </article>
+  </div>
+
+  <div class="ft-foot">
+    <div class="story-dots" id="storyDots">
+      <button class="story-dot on" data-story="0" aria-label="Go to The Garage"></button>
+      <button class="story-dot" data-story="1" aria-label="Go to Sleeping Sanctuary"></button>
+      <button class="story-dot" data-story="2" aria-label="Go to Social Space"></button>
+      <button class="story-dot" data-story="3" aria-label="Go to Rooftop Retreat"></button>
+    </div>
+    <p class="story-disclosure">Lifestyle imagery for marketing purposes only. Images are not renderings of the residences. Features, finishes and views may vary.</p>
+  </div>
 </section>
 
 <!-- ============== 7. ELEVATOR — Elevate Effortlessly ============== -->
@@ -1127,7 +1142,7 @@ section{padding:var(--sec) 0}
       <div class="eyebrow">Four Levels · Four Stops</div>
       <h2>ELEVATE EFFORTLESSLY.</h2>
       <p>Your private elevator connects every level of your residence — from the garage and main living spaces to the bedrooms and private rooftop terrace.</p>
-      <div class="garage-words" style="margin-top:24px"><span>Groceries</span><span>Luggage</span><span>Guests</span><span>Everyday Life</span></div>
+      <div class="pill-row"><span>Groceries</span><span>Luggage</span><span>Guests</span><span>Everyday Life</span></div>
       <p class="ftxt">Four levels have never been easier to live.</p>
     </div>
   </div>
