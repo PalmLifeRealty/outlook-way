@@ -868,6 +868,8 @@ section{padding:var(--sec) 0}
 .bfk-success p{margin-top:14px;color:var(--ink-2);max-width:44ch}
 .bfk-success .actions{margin-top:24px}
 
+.hp-field{position:absolute!important;left:-9999px!important;top:auto!important;width:1px!important;height:1px!important;opacity:0!important;overflow:hidden!important;pointer-events:none}
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
   .story-slide{transition:none}
@@ -1456,6 +1458,7 @@ section{padding:var(--sec) 0}
       <input type="hidden" name="source" id="leadSource" value="Contact Form" />
       <input type="hidden" name="page_url" id="leadPageUrl" value="" />
       <input type="hidden" name="_subject" id="leadSubject" value="Outlook Way — New Lead Submission" />
+      <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div><label for="fn">First Name</label><input id="fn" name="first_name" type="text" required /></div>
       <div><label for="ln">Last Name</label><input id="ln" name="last_name" type="text" required /></div>
       <div class="full"><label for="em">Email</label><input id="em" name="email" type="email" required /></div>
@@ -1614,6 +1617,8 @@ section{padding:var(--sec) 0}
       <input type="hidden" name="interest" id="bfkInterest" value="Be First To Know" />
       <input type="hidden" name="source" id="bfkSource" value="Be First To Know Popup" />
       <input type="hidden" name="page_url" id="bfkPageUrl" value="" />
+      <input type="hidden" name="_subject" id="bfkSubject" value="Outlook Way — Be First To Know Registration" />
+      <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div><label for="bfkFn">Name</label><input id="bfkFn" name="first_name" type="text" required autocomplete="given-name" /></div>
       <div><label for="bfkEm">Email</label><input id="bfkEm" name="email" type="email" required autocomplete="email" /></div>
       <div class="full"><label for="bfkPh">Phone (optional)</label><input id="bfkPh" name="phone" type="tel" autocomplete="tel" /></div>
@@ -1836,6 +1841,17 @@ function prefillLead(unit,phase){
   if(unit){const rs=document.getElementById('res');for(const o of rs.options){if(o.text.includes(unit.match(/\d+/)?.[0]||'')){rs.value=o.text;break;}}}
   document.getElementById('leadInterest').value=(phase||"General")+" · "+unit;
 }
+function setSubmitting(btn,on){
+  if(!btn) return;
+  if(on){
+    if(!btn.dataset.idleHtml) btn.dataset.idleHtml=btn.innerHTML;
+    btn.disabled=true; btn.setAttribute('aria-busy','true'); btn.textContent='Sending\u2026';
+  }else{
+    btn.disabled=false; btn.removeAttribute('aria-busy');
+    if(btn.dataset.idleHtml) btn.innerHTML=btn.dataset.idleHtml;
+  }
+}
+function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
 async function postToFormspree(form){
   // Single, centralized submission path. Returns true on a 2xx response from Formspree only.
   const endpoint=CONFIG.FORMSPREE_ENDPOINT;
@@ -1854,7 +1870,10 @@ async function submitLead(e){
   document.getElementById('leadPageUrl').value=location.href;
   const errEl=document.getElementById('leadFormError');
   if(errEl) errEl.classList.remove('show');
+  const btn=form.querySelector('button[type="submit"]');
+  setSubmitting(btn,true);
   const ok=await postToFormspree(form);
+  setSubmitting(btn,false);
   if(ok){
     renderLeadSuccess(fn,src,int,true);
     try{localStorage.setItem(CONFIG.PRIMARY_FORM_LOCK_KEY, '1');}catch(_){}
@@ -1994,12 +2013,19 @@ async function submitBfk(e){
   e.preventDefault();
   const fn=(document.getElementById('bfkFn')?.value||'').trim();
   const em=(document.getElementById('bfkEm')?.value||'').trim();
-  if(!fn || !em){ return false; }
+  const errBox=document.getElementById('bfkFormError');
+  if(errBox && !errBox.dataset.idleHtml) errBox.dataset.idleHtml=errBox.innerHTML;
+  const showBfkError=(msg)=>{ if(!errBox) return; errBox.innerHTML=msg||errBox.dataset.idleHtml; errBox.classList.add('show'); };
+  if(!fn){ showBfkError('Please enter your name.'); document.getElementById('bfkFn')?.focus(); return false; }
+  if(!isEmail(em)){ showBfkError('Please enter a valid email address so we can reach you.'); document.getElementById('bfkEm')?.focus(); return false; }
   document.getElementById('bfkPageUrl').value=location.href;
   setBfkSource("Be First To Know Popup · "+document.getElementById('bfkInt').value);
   const errEl=document.getElementById('bfkFormError');
-  if(errEl) errEl.classList.remove('show');
+  if(errEl){ errEl.classList.remove('show'); errEl.innerHTML=errEl.dataset.idleHtml; }
+  const bfkBtn=document.getElementById('bfkSubmitBtn');
+  setSubmitting(bfkBtn,true);
   const ok=await postToFormspree(document.getElementById('bfkForm'));
+  setSubmitting(bfkBtn,false);
   if(ok){
     try{localStorage.setItem(BFK.KEY_SUBMITTED,'1');}catch(_){}
     BFK.card.innerHTML=`
