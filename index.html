@@ -784,6 +784,14 @@ section{padding:var(--sec) 0}
 .lead-form select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--fountain) 50%),linear-gradient(135deg,var(--fountain) 50%,transparent 50%);background-position:calc(100% - 14px) 50%,calc(100% - 8px) 50%;background-size:6px 6px;background-repeat:no-repeat}
 .lead-form select option{color:var(--ink);background:#fff}
 .lead-form textarea{min-height:84px;resize:vertical;border:1px solid rgba(255,255,255,.32);padding:12px}
+.lead-form .qual{border:0;border-top:1px solid rgba(255,255,255,.22);margin:6px 0 0;padding:20px 0 0;min-width:0}
+.lead-form .qual legend{padding:0;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.68;margin-bottom:14px}
+.lead-form .qual legend span{font-weight:400;letter-spacing:.06em;text-transform:none;opacity:.62;font-style:italic;font-family:var(--display);font-size:13px;margin-left:6px}
+.qual-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+.lead-form .qchk{display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin:0;font-family:var(--sans);font-size:13px;font-weight:400;letter-spacing:0;text-transform:none;opacity:.9;line-height:1.4;padding:2px 0}
+.lead-form .qchk input{width:16px;height:16px;flex:0 0 16px;accent-color:var(--fountain);margin:1px 0 0;padding:0;border:0}
+.lead-form .qchk:hover{opacity:1}
+@media (max-width:640px){.qual-grid{grid-template-columns:1fr}}
 .lead-form .submit{margin-top:6px;justify-self:start}
 .source-hint{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:16px;grid-column:1/-1}
 .lead-form .form-error{margin-top:14px;font-family:var(--sans);font-size:13px;color:#ffb4b4;display:none}
@@ -1457,7 +1465,6 @@ section{padding:var(--sec) 0}
       <input type="hidden" name="interest" id="leadInterest" value="General Inquiry" />
       <input type="hidden" name="source" id="leadSource" value="Contact Form" />
       <input type="hidden" name="page_url" id="leadPageUrl" value="" />
-      <input type="hidden" name="_subject" id="leadSubject" value="Outlook Way — New Lead Submission" />
       <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div><label for="fn">First Name</label><input id="fn" name="first_name" type="text" required /></div>
       <div><label for="ln">Last Name</label><input id="ln" name="last_name" type="text" required /></div>
@@ -1481,6 +1488,34 @@ section{padding:var(--sec) 0}
           <option>Residence 12 · 10 Outlook Way</option>
         </select>
       </div>
+      <div><label for="tml">Purchase Timeline</label>
+        <select id="tml" name="timeline">
+          <option value="Not specified">Select…</option>
+          <option>Next 3 months</option>
+          <option>3–12 months</option>
+          <option>12+ months</option>
+          <option>Just exploring</option>
+        </select>
+      </div>
+      <div><label for="btype">This Would Be</label>
+        <select id="btype" name="buyer_type">
+          <option value="Not specified">Select…</option>
+          <option>A primary residence</option>
+          <option>A seasonal or second home</option>
+          <option>An investment property</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <fieldset class="full qual">
+        <legend>A Little About You <span>optional</span></legend>
+        <div class="qual-grid">
+          <label class="qchk"><input type="checkbox" name="about_you" value="I live locally" /><span>I live locally</span></label>
+          <label class="qchk"><input type="checkbox" name="about_you" value="Relocating to the area" /><span>Relocating to the area</span></label>
+          <label class="qchk"><input type="checkbox" name="about_you" value="Already working with an agent" /><span>Already working with an agent</span></label>
+          <label class="qchk"><input type="checkbox" name="about_you" value="Realtor or broker" /><span>I'm a Realtor / Broker</span></label>
+          <label class="qchk"><input type="checkbox" name="about_you" value="Builder or developer" /><span>I'm a Builder / Developer</span></label>
+        </div>
+      </fieldset>
       <div class="full"><label for="msg">Message (optional)</label><textarea id="msg" name="message"></textarea></div>
       <button type="submit" class="btn btn-primary submit">Request Details<span class="arr">→</span></button>
       <div class="form-error" id="leadFormError" role="alert">We couldn&rsquo;t deliver your request right now. Please try again in a moment, or call Palm Life Realty at <a href="tel:+18888774040">1-888-877-4040</a> or email <a href="mailto:walter@palmliferealty.com">walter@palmliferealty.com</a>.</div>
@@ -1617,7 +1652,6 @@ section{padding:var(--sec) 0}
       <input type="hidden" name="interest" id="bfkInterest" value="Be First To Know" />
       <input type="hidden" name="source" id="bfkSource" value="Be First To Know Popup" />
       <input type="hidden" name="page_url" id="bfkPageUrl" value="" />
-      <input type="hidden" name="_subject" id="bfkSubject" value="Outlook Way — Be First To Know Registration" />
       <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div><label for="bfkFn">Name</label><input id="bfkFn" name="first_name" type="text" required autocomplete="given-name" /></div>
       <div><label for="bfkEm">Email</label><input id="bfkEm" name="email" type="email" required autocomplete="email" /></div>
@@ -1645,7 +1679,8 @@ section{padding:var(--sec) 0}
    to the same place. To change, edit FORMSPREE_ENDPOINT only.
    ============================================================ */
 const CONFIG = {
-  FORMSPREE_ENDPOINT: 'https://formspree.io/f/xbgjdvep',
+  FORMSPREE_ENDPOINT: 'https://formspree.io/f/xbgjdvep',        // contact form  -> "Outlook Way Inquiry"
+  FORMSPREE_BFK_ENDPOINT: 'https://formspree.io/f/mqpkldpq',    // popup         -> "Outlook Way — Be First To Know"
   POPUP_TRIGGER_MS: 25000,         // 25 seconds
   POPUP_TRIGGER_DEPTH: 0.38,       // 38% page depth
   POPUP_DISMISS_DAYS: 7,           // suppress popup 7 days after dismiss
@@ -1835,11 +1870,44 @@ function setLeadSource(label){
 function setBfkSource(label){
   document.getElementById('bfkSource').value=label;
 }
+/* The Residence list is rebuilt from unitData whenever the Phase changes, so a
+   visitor can no longer submit "Phase Three" paired with a Phase One residence. */
+function residencesForPhase(phaseText){
+  const t=String(phaseText||'');
+  const phase = t.startsWith('Phase One') ? 'Phase One'
+              : t.startsWith('Phase Two') ? 'Phase Two'
+              : t.startsWith('Phase Three') ? 'Phase Three' : null;
+  if(!phase) return [];
+  return Object.keys(unitData).map(Number)
+    .filter(n=>unitData[n].phase===phase)
+    .sort((a,b)=>b-a)
+    .map(n=>`${unitData[n].num} · ${unitData[n].addr}`);
+}
+function syncResidenceOptions(keepValue){
+  const ph=document.getElementById('phs'), rs=document.getElementById('res');
+  if(!ph||!rs) return;
+  const list=residencesForPhase(ph.value);
+  const prev=keepValue||rs.value;
+  rs.innerHTML='';
+  const first=document.createElement('option');
+  first.textContent = list.length ? 'Not Sure Yet' : 'Not Applicable';
+  rs.appendChild(first);
+  list.forEach(txt=>{ const o=document.createElement('option'); o.textContent=txt; rs.appendChild(o); });
+  rs.disabled = list.length===0;
+  if(prev && [...rs.options].some(o=>o.text===prev)) rs.value=prev;
+}
+
 function prefillLead(unit,phase){
   const ph=document.getElementById('phs');
-  for(const o of ph.options){ if(phase==="Phase Two"&&o.text.startsWith("Phase Two")){ph.value=o.text;break;} if(phase==="Phase Three"&&o.text.startsWith("Phase Three")){ph.value=o.text;break;} if(phase==="Phase One"&&o.text.startsWith("Phase One")){ph.value=o.text;break;} }
-  if(unit){const rs=document.getElementById('res');for(const o of rs.options){if(o.text.includes(unit.match(/\d+/)?.[0]||'')){rs.value=o.text;break;}}}
-  document.getElementById('leadInterest').value=(phase||"General")+" · "+unit;
+  for(const o of ph.options){ if(phase && o.text.startsWith(phase)){ ph.value=o.text; break; } }
+  syncResidenceOptions();
+  if(unit){
+    const rs=document.getElementById('res');
+    // exact-match on the residence number — "Residence 1" must not select "Residence 10"
+    const match=[...rs.options].find(o=>o.text.split(' · ')[0]===unit);
+    if(match) rs.value=match.text;
+  }
+  document.getElementById('leadInterest').value=(phase||"General")+(unit?" · "+unit:"");
 }
 function setSubmitting(btn,on){
   if(!btn) return;
@@ -1852,9 +1920,12 @@ function setSubmitting(btn,on){
   }
 }
 function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
-async function postToFormspree(form){
+document.getElementById('phs')?.addEventListener('change',()=>syncResidenceOptions());
+syncResidenceOptions();
+
+async function postToFormspree(form,endpointOverride){
   // Single, centralized submission path. Returns true on a 2xx response from Formspree only.
-  const endpoint=CONFIG.FORMSPREE_ENDPOINT;
+  const endpoint=endpointOverride||CONFIG.FORMSPREE_ENDPOINT;
   if(!endpoint || /XXXX/i.test(endpoint)) return false;
   try{
     const r=await fetch(endpoint,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
@@ -2024,7 +2095,7 @@ async function submitBfk(e){
   if(errEl){ errEl.classList.remove('show'); errEl.innerHTML=errEl.dataset.idleHtml; }
   const bfkBtn=document.getElementById('bfkSubmitBtn');
   setSubmitting(bfkBtn,true);
-  const ok=await postToFormspree(document.getElementById('bfkForm'));
+  const ok=await postToFormspree(document.getElementById('bfkForm'),CONFIG.FORMSPREE_BFK_ENDPOINT);
   setSubmitting(bfkBtn,false);
   if(ok){
     try{localStorage.setItem(BFK.KEY_SUBMITTED,'1');}catch(_){}
